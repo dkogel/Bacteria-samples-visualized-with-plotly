@@ -16,13 +16,13 @@ function DrawBarchart (sampleId){
             let otu_ids = result.otu_ids;
             let otu_labels = result.otu_labels;
             let sample_values = result.sample_values;
-            let yticks = otu_ids.slice(0,10).map(otdID => `OTU${otuID}`).reverse();
+            let yticks = otu_ids.slice(0,10).map(otuID => `OTU ID${otuID}`).reverse();
 
             let barData = {
                 x: sample_values.slice(0,10).reverse(),
                 y: yticks,
                 type: "bar",
-                text: otu_labels.slice(0,10).reverse()
+                text: otu_labels.slice(0,10).reverse(),
                 orientation: "h"
             };
 
