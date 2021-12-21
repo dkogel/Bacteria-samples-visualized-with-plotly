@@ -6,12 +6,11 @@ function DrawBarchart (sampleId){
     console.log(`DrawBarchchart ${sampleId}`);
     d3.json('samples.json').then(data => 
         {
-            console.log(data);
             let samples = data.samples;
             let resultArray = samples.filter(s => s.id === sampleId);
             let result = resultArray[0];
             
-            console.log(result);
+            
 
             let otu_ids = result.otu_ids;
             let otu_labels = result.otu_labels;
@@ -36,20 +35,45 @@ function DrawBarchart (sampleId){
 
 function DrawBubblechart (sampleId){
     console.log(`DrawBubblechart ${sampleId}`);
+    d3.json("samples.json").then(data => 
+        {
+            let samples = data.samples;
+            let resultArray = samples.filter(s => s.id == sampleId);
+            let result = resultArray[0];
+            console.log(result)
+        })
+
 }
 
-function ShowMetadata (sampleId){
+
+
+function ShowMetaData (sampleId){
     console.log(`ShowMetadata ${sampleId}`);
+    d3.json("samples.json").then(data => 
+    {
+        let metaData = data.metadata;
+        let resultArray = metaData.filter(s => s.id == sampleId);
+        let result = resultArray[0];
+        console.log(result);
+
+    })
 }
+
+ShowMetaData()
+
 
 function optionChanged(id) {
     console.log(`optionChanged to ${id}`);
+
+   //display bar chart
     DrawBarchart(id);
-    DrawBubblechart(id);
-    ShowMetadata(id);
-    //populate demographic info
-    //display bar chart
+
     //display the bubble chart
+    DrawBubblechart(id);
+
+    //populate demographic info
+    ShowMetaData(id);
+    
 }
 
 
@@ -74,7 +98,7 @@ function InitDashboard()
 
         DrawBarchart(sampleId);
         DrawBubblechart(sampleId);
-        ShowMetadata(sampleId);
+        ShowMetaData(sampleId);
     });
 }
 
