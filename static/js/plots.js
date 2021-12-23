@@ -4,7 +4,7 @@ console.log("this is plots.js")
 
 function DrawBarchart (sampleId){
     console.log(`DrawBarchchart ${sampleId}`);
-    d3.json('samples.json').then(data => 
+    d3.json('../../samples.json').then(data => 
         {
             let samples = data.samples;
             let resultArray = samples.filter(s => s.id === sampleId);
@@ -27,7 +27,14 @@ function DrawBarchart (sampleId){
 
             let barArray = [barData];
 
-            Plotly.newPlot("bar",barArray);
+            let layout = {
+                title: "Top 10 Bacteria Cultures Found",
+                showlegend: false,
+                height: 400,
+                width: 400
+            };
+
+            Plotly.newPlot("bar",barArray, layout);
 
         })
 
@@ -36,11 +43,37 @@ function DrawBarchart (sampleId){
 function DrawBubblechart (sampleId){
     console.log(`DrawBubblechart ${sampleId}`);
     d3.json("samples.json").then(data => 
-        {
+        {   
+            //grabbing and filtering specific test subject data
             let samples = data.samples;
             let resultArray = samples.filter(s => s.id == sampleId);
             let result = resultArray[0];
-            console.log(result)
+            console.log(`result.otu_ids ${result.otu_ids}`)
+            console.log(`result.sample_values ${result.sample_values}`)
+
+            let trace1 = {
+                x: result.otu_ids,
+                y: result.sample_values,
+                text: result.otu_labels,
+                mode: 'markers',
+                marker: {
+                    size: result.sample_values,
+                    color: result.otu_ids,
+                    sizeref: 2
+                }
+            };
+
+            let bubble_data = [trace1];
+
+            let layout = {
+                title: "Bacteria Cultures per Sample",
+                showlegend: false,
+                height: 600,
+                width: 1200
+            };
+
+            Plotly.newPlot("bubble",bubble_data,layout);
+
         })
 
 }
@@ -54,12 +87,44 @@ function ShowMetaData (sampleId){
         let metaData = data.metadata;
         let resultArray = metaData.filter(s => s.id == sampleId);
         let result = resultArray[0];
-        console.log(result);
+
+        let id = result.id;
+        let id_str = `id: ${id}`;
+        d3.select("#id").text(id_str);
+
+        let ethnicity = result.ethnicity;
+        let ethnicity_str = `ethnicity: ${ethnicity}`;
+        d3.select("#ethnicity").text(ethnicity_str);
+
+        let gender = result.gender;
+        let gender_str = `gender: ${gender}`;
+        d3.select("#gender").text(gender_str);
+
+        let age = result.age;
+        let age_str = `age: ${age}`;
+        d3.select("#age").text(age_str);
+
+
+        let location = result.location;
+        let location_str = `location: ${location}`;
+        d3.select("#location").text(location_str);
+
+        let bbtype = result.bbtype;
+        let bbtype_str = `bbtype: ${bbtype}`;
+        d3.select("#bbtype").text(bbtype_str);
+
+        let wfreq = result.wfreq;
+        let wfreq_str = `wfreq: ${wfreq}`;
+        d3.select("#wfreq").text(wfreq_str);
 
     })
 }
 
 ShowMetaData()
+
+
+
+
 
 
 function optionChanged(id) {
@@ -73,7 +138,9 @@ function optionChanged(id) {
 
     //populate demographic info
     ShowMetaData(id);
-    
+
+
+    // ethnicity, gender, age, location, bbtype, wfreq
 }
 
 
