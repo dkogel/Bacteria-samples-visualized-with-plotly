@@ -3,49 +3,6 @@
 console.log("this is plots.js")
 
 
-function DrawGaugechart(sampleId){
-    d3.json('../../samples.json').then(data =>
-    {
-        let metaData = data.metadata;
-        let resultArray = metaData.filter(m => m.id == sampleId);
-        let result = resultArray[0];
-        let wfreq = result.wfreq
-        console.log(`wfreq gauge: ${wfreq}`)
-
-
-        let gauge_data = [
-            {
-                domain: { x: [0, 1], y: [0, 1] },
-                value: wfreq,
-                title: { text: "Wash Frequency per Week" },
-                type: "indicator",
-                mode: "gauge+number", 
-                gauge: {   
-                    axis: { range: [null, 9] },
-                    bar: { color: "darkblue" },
-                    steps: [
-                    { range: [0, 1], color: "#ffffff" },
-                    { range: [1, 2], color: "#e1e7ec" },
-                    { range: [2, 3], color: "#c4cfd9" },
-                    { range: [3, 4], color: "#a7b8c6" },
-                    { range: [4, 5], color: "#8aa1b4" },
-                    { range: [5, 6], color: "#6e8ba1" },
-                    { range: [6, 7], color: "#517590" },
-                    { range: [7, 8], color: "#32607e" },
-                    { range: [8, 9], color: "#004c6d" }
-                    ]
-                }   
-            }
-        ];
-        
-        let layout = { width: 400, height: 400, margin: { t: 0, b: 0 } };
-        Plotly.newPlot("gauge", gauge_data, layout);
-    
-    })
-
-
-    
-}
 
 
 function DrawBarchart (sampleId){
@@ -166,8 +123,46 @@ function ShowMetaData (sampleId){
     })
 }
 
+function DrawGaugechart(sampleId){
+    d3.json('../../samples.json').then(data =>
+    {
+        let metaData = data.metadata;
+        let resultArray = metaData.filter(m => m.id == sampleId);
+        let result = resultArray[0];
+        let wfreq = result.wfreq
+        console.log(`wfreq gauge: ${wfreq}`)
 
 
+        let gauge_data = [
+            {
+                domain: { x: [0, 1], y: [0, 1] },
+                value: wfreq,
+                title: { text: "Wash Frequency per Week" },
+                type: "indicator",
+                mode: "gauge+number", 
+                gauge: {   
+                    axis: { range: [null, 9] },
+                    bar: { color: "darkblue" },
+                    steps: [
+                    { range: [0, 1], color: "#ffffff" },
+                    { range: [1, 2], color: "#e1e7ec" },
+                    { range: [2, 3], color: "#c4cfd9" },
+                    { range: [3, 4], color: "#a7b8c6" },
+                    { range: [4, 5], color: "#8aa1b4" },
+                    { range: [5, 6], color: "#6e8ba1" },
+                    { range: [6, 7], color: "#517590" },
+                    { range: [7, 8], color: "#32607e" },
+                    { range: [8, 9], color: "#004c6d" }
+                    ]
+                }   
+            }
+        ];
+        
+        let layout = { width: 400, height: 400, margin: { t: 0, b: 0 } };
+        Plotly.newPlot("gauge", gauge_data, layout);
+    
+    })
+}
 
 
 
@@ -183,13 +178,13 @@ function optionChanged(id) {
     //display the bubble chart
     DrawBubblechart(id);
 
-    //display gauge chart
-    DrawGaugechart(id);
-
     //populate demographic info
     ShowMetaData(id);
 
-    // ethnicity, gender, age, location, bbtype, wfreq
+    //display gauge chart
+    DrawGaugechart(id);
+
+
 }
 
 
@@ -215,6 +210,8 @@ function InitDashboard()
         DrawBarchart(sampleId);
         DrawBubblechart(sampleId);
         ShowMetaData(sampleId);
+        DrawGaugechart(sampleId)
+
     });
 }
 
