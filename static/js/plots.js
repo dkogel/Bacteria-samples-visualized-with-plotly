@@ -7,7 +7,7 @@ console.log("this is plots.js")
 
 function DrawBarchart (sampleId){
     console.log(`DrawBarchchart ${sampleId}`);
-    d3.json('../../samples.json').then(data => 
+    d3.json("samples.json").then(data => 
         {
             let samples = data.samples;
             let resultArray = samples.filter(s => s.id === sampleId);
@@ -124,7 +124,7 @@ function ShowMetaData (sampleId){
 }
 
 function DrawGaugechart(sampleId){
-    d3.json('../../samples.json').then(data =>
+    d3.json('samples.json').then(data =>
     {
         let metaData = data.metadata;
         let resultArray = metaData.filter(m => m.id == sampleId);
