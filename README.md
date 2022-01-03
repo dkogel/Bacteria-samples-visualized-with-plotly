@@ -1,4 +1,4 @@
-# interactive-viz-challeng
+# interactive-viz-challenge
 
 The purpose of this challenge was to practice using Plotly with JavaScript 
 to create data visualizations for websites. I used a sample dataset in JSON 
