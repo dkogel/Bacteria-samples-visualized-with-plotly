@@ -9,8 +9,7 @@ showing all strains and their concentrations, and a gauge chart showing the
 participants wash frequency. All visualizations employed Plotly, and the charts 
 update each time a new test subject ID is chosen from the drop down menu.  
 
-#### To see the website, use the link below, and choose a new test subject id to 
-#### see it update.
+#### To see the website, use the link below, and choose a new test subject id to see it update.
 
 https://dkogel.github.io/interactive-viz-challenge/
   
