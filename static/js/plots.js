@@ -1,9 +1,9 @@
-// much of this code taken from Dom's Office Hours 12/11/21
+// some of this code is based on Dom's Office Hours 12/11/21
 
-console.log("this is plots.js")
+console.log("plots.js is loaded")
 
 
-
+// create function to draw the bar chart
 
 function DrawBarchart (sampleId){
     console.log(`DrawBarchchart ${sampleId}`);
@@ -12,8 +12,6 @@ function DrawBarchart (sampleId){
             let samples = data.samples;
             let resultArray = samples.filter(s => s.id === sampleId);
             let result = resultArray[0];
-            
-            
 
             let otu_ids = result.otu_ids;
             let otu_labels = result.otu_labels;
@@ -38,10 +36,10 @@ function DrawBarchart (sampleId){
             };
 
             Plotly.newPlot("bar",barArray, layout);
-
         })
-
 }
+
+// create function to draw bubble chart
 
 function DrawBubblechart (sampleId){
     console.log(`DrawBubblechart ${sampleId}`);
@@ -81,7 +79,7 @@ function DrawBubblechart (sampleId){
 
 }
 
-
+// create function to show metadata for each participant
 
 function ShowMetaData (sampleId){
     console.log(`ShowMetadata ${sampleId}`);
@@ -122,6 +120,8 @@ function ShowMetaData (sampleId){
 
     })
 }
+
+//create function to render gauge chart for wash frequency
 
 function DrawGaugechart(sampleId){
     d3.json('samples.json').then(data =>
@@ -167,7 +167,7 @@ function DrawGaugechart(sampleId){
 
 
 
-
+//call and update chart functions when a new Id is selected from the dropdown 
 
 function optionChanged(id) {
     console.log(`optionChanged to ${id}`);
@@ -187,6 +187,7 @@ function optionChanged(id) {
 
 }
 
+//create initialization function to show a dataset at load
 
 function InitDashboard()
 {
@@ -214,5 +215,7 @@ function InitDashboard()
 
     });
 }
+
+//call initialization function
 
 InitDashboard();
