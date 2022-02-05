@@ -1,4 +1,4 @@
-# interactive-viz-challenge
+# Bacteria samples visualized with Plotly
 
 The purpose of this project was to practice using Plotly with JavaScript 
 to create data visualizations for websites. I used a sample dataset in JSON 
