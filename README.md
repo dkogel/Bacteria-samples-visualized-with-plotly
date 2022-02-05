@@ -1,7 +1,7 @@
 # Bacteria samples visualized with Plotly
 
 The purpose of this project was to practice using Plotly with JavaScript 
-to create data visualizations for websites. I used a sample dataset in JSON 
+to create interactive data visualizations for websites. I used a sample dataset in JSON 
 format that represents a study of the bacteria cultures in test subjects' 
 belly buttons. The dashboard created displays metadata for each 
 test subject, a bar chart that shows the top 10 cultures found from each subject, a bubble chart
