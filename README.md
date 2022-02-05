@@ -1,6 +1,6 @@
 # interactive-viz-challenge
 
-The purpose of this challenge was to practice using Plotly with JavaScript 
+The purpose of this project was to practice using Plotly with JavaScript 
 to create data visualizations for websites. I used a sample dataset in JSON 
 format that represents a study of the bacteria cultures in test subjects' 
 belly buttons. The dashboard created displays metadata for each 
